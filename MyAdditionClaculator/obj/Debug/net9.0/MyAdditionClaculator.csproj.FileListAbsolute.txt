@@ -1,0 +1,15 @@
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/bin/Debug/net9.0/MyAdditionClaculator
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/bin/Debug/net9.0/MyAdditionClaculator.deps.json
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/bin/Debug/net9.0/MyAdditionClaculator.runtimeconfig.json
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/bin/Debug/net9.0/MyAdditionClaculator.dll
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/bin/Debug/net9.0/MyAdditionClaculator.pdb
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/obj/Debug/net9.0/MyAdditionClaculator.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/obj/Debug/net9.0/MyAdditionClaculator.AssemblyInfoInputs.cache
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/obj/Debug/net9.0/MyAdditionClaculator.AssemblyInfo.cs
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/obj/Debug/net9.0/MyAdditionClaculator.csproj.CoreCompileInputs.cache
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/obj/Debug/net9.0/MyAdditionClaculator.sourcelink.json
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/obj/Debug/net9.0/MyAdditionClaculator.dll
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/obj/Debug/net9.0/refint/MyAdditionClaculator.dll
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/obj/Debug/net9.0/MyAdditionClaculator.pdb
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/obj/Debug/net9.0/MyAdditionClaculator.genruntimeconfig.cache
+/Users/mac/Documents/MyProjects/C#Projects/CSharpMasterClass/MyAdditionClaculator/obj/Debug/net9.0/ref/MyAdditionClaculator.dll
