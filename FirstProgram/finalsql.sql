@@ -1,0 +1,84 @@
+
+
+
+-- WITH SalesAssignedAccounts AS (
+--     SELECT * 
+--     FROM bank78_onboarding_svc."SalesAssignedAccounts" sa 
+--     WHERE sa."SalesPersonCode" = 'SAL-0003' -- replace with your test sales_person_code
+-- ),
+-- AccountHolders AS (
+--     SELECT
+--         saa."Email",
+--         saa."AccountHolder",
+--         CASE WHEN saa."AccountHolder" = 'Customer' THEN c."Id" ELSE NULL END AS "CustomerId",
+--         CASE WHEN saa."AccountHolder" = 'Business' THEN b."Id" ELSE NULL END AS "BusinessId"
+--     FROM SalesAssignedAccounts saa
+--     LEFT JOIN bank78_onboarding_svc."Customers" c 
+--         ON saa."AccountHolder" = 'Customer' AND c."UserName" = saa."Email"
+--     LEFT JOIN bank78_onboarding_svc."Businesses" b 
+--         ON saa."AccountHolder" = 'Business' AND b."Email" = saa."Email"
+-- ),
+-- Accounts AS (
+--     SELECT 
+--         ah."Email",
+--         a."AccountNumber"
+--     FROM AccountHolders ah
+--     JOIN bank78_onboarding_svc."Accounts" a
+--         ON (ah."CustomerId" IS NOT NULL AND a."CustomerId" = ah."CustomerId")
+--         OR (ah."BusinessId" IS NOT NULL AND a."BusinessId" = ah."BusinessId")
+-- ),
+-- InflowBreakdown AS (
+--     SELECT 
+--         acc."Email",
+--         SUM(pct."Amount"::NUMERIC) AS "TotalInflow"
+--     FROM bank78_nipinward_svc."PostCreditTransactions" pct
+--     JOIN Accounts acc ON acc."AccountNumber" = pct."BeneficiaryAccountNumber"
+--     WHERE pct."RequestDate" BETWEEN '2023-01-01' AND '2025-12-31'
+--     GROUP BY acc."Email"
+-- ),
+-- TransactionsBreakdown AS (
+--     SELECT 
+--         t."EmailAddress",
+--         SUM(CASE WHEN t."TransactionType" = 'Outflow' THEN t."Amount"::NUMERIC ELSE 0 END) AS "TotalOutflow",
+--         SUM(CASE WHEN t."TransactionType" = 'Outflow' THEN t."TransactionFee"::NUMERIC ELSE 0 END) AS "TotalFees",
+--         SUM(CASE WHEN t."TransactionType" = 'Outflow' THEN t."TransactionFee"::NUMERIC * 0.93 ELSE 0 END) AS "TotalRevenue"
+--     FROM bank78_transaction_svc."Transactions" t
+--     WHERE t."DateCreated" BETWEEN '2023-01-01' AND '2025-12-31'
+--     AND t."EmailAddress" IN (
+--         SELECT "Email" FROM SalesAssignedAccounts
+--     )
+--     GROUP BY t."EmailAddress"
+-- ),
+-- LatestBalances AS (
+--     SELECT 
+--         db."UserName",
+--         db."TotalLedgerBalance",
+--         db."TotalAvailableBalance"
+--     FROM bank78_onboarding_svc."DailyBalances" db
+--     WHERE db."UserName" IN (
+--         SELECT "Email" FROM SalesAssignedAccounts
+--     )
+-- )
+-- SELECT
+--     sa."Email"::TEXT AS "Email",
+--     sa."AccountName"::TEXT AS "AccountName",
+--     sa."PhoneNumber"::TEXT AS "PhoneNumber",
+--     sa."AccountHolder"::TEXT AS "AccountHolder",
+--     COALESCE(ts."TotalOutflow", 0) AS "TotalOutflow",
+--     COALESCE(ib."TotalInflow", 0) AS "TotalInflow",
+--     COALESCE(ts."TotalFees", 0) AS "TotalFees",
+--     COALESCE(ts."TotalRevenue", 0) AS "TotalRevenue",
+--     COALESCE(lb."TotalLedgerBalance", 0) AS "TotalLedgerBalance",
+--     COALESCE(lb."TotalAvailableBalance", 0) AS "TotalAvailableBalance"
+-- FROM SalesAssignedAccounts sa
+-- LEFT JOIN TransactionsBreakdown ts 
+--     ON sa."Email" = ts."EmailAddress"
+-- LEFT JOIN InflowBreakdown ib 
+--     ON sa."Email" = ib."Email"
+-- LEFT JOIN LatestBalances lb 
+--     ON sa."Email" = lb."UserName"
+-- ORDER BY sa."Email";
+
+
+
+
